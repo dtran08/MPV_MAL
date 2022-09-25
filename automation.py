@@ -1,8 +1,11 @@
 import os
-import sys
-import traceback
+# import sys
+# import traceback
 import json
 import os.path
+import requests
+import difflib
+from flask import jsonify
 from dataGenerator import AnimeMap
 from generateMALToken import *
 
@@ -56,8 +59,14 @@ def setup():
     token = generate_new_token(authorisation_code, code_verifier, userClientID, userClientSecret)
 
     print_user_info(token['access_token'])
+    f = open("access_token.txt", "w")
+    f.write(token['access_token'])
+    f.close()
     print("Setup complete!")
 
+def retrieveAccessToken():
+    f = open("access_token.txt", "r")
+    return f.read()
 
 def main():
     if not os.path.isfile('token.json'):
@@ -65,7 +74,7 @@ def main():
         setup()
     else:
         while True:
-            promptSetup = input("Set up MAL API authorization? (Y/N)")
+            promptSetup = input("Set up MAL API authorization? (Y/N) ")
             promptSetup = promptSetup.lower()
             if promptSetup not in ('y', 'n'):
                 print("Invalid input")
@@ -83,7 +92,7 @@ def main():
     aniMap = AnimeMap()
 
     while True:
-        clearFile = ("Clear recently viewed file? (Y/N)")
+        clearFile = input("Clear recently viewed file? (Y/N) ")
         clearFile = clearFile.lower()
         if clearFile not in ('y', 'n'):
             print("Invalid input")
@@ -93,10 +102,29 @@ def main():
             break
         elif clearFile == 'n':
             break
-    
-    for show in aniMap.keys:
-        #validate show api
-        for episode in aniMap[show]:
-            #add episode to list
+
+    # print(retrieveAccessToken())
+    print(aniMap)
+
+    for show in aniMap.keys():
+        urlSearch = 'https://api.myanimelist.net/v2/anime'
+        headersSearch = {'Authorization': 'Bearer ' + str(retrieveAccessToken()),}
+        paramsSearch = {
+            'q': show,
+            'limit': '10',
+            'fields': 'anime',
+        }
+        rSearch = requests.get(urlSearch, params=paramsSearch, headers=headersSearch)
+        for dataKeys in rSearch.json()['data']:
+            print(dataKeys['node']['title'])
+        print("")
+        #get show id here
+        #add episodes
+        # urlAdd = 'https://api.myanimelist.net/v2/anime/' + str(animeID) + '/my_list_status'
+        # headersAdd = {'Authorization': 'Bearer ' + str(retrieveAccessToken()),}
+        # dataAdd = {
+        #     'num_watched_episodes': len(aniMap[show])
+        # }
+        # rAdd = requests.put(urlAdd, headers=headersAdd, data=dataAdd)
 
 main()
