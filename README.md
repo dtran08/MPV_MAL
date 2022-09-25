@@ -31,3 +31,4 @@ Planned Features:
 -Figure out how to automatically grab the access token (so the user doesn't have to copy/paste it into the terminal on setup)
 -Create json format for client ID and client secret
 -Automatically drop the `save.lua` script into the user's mpv config path
+-If the length of the anime watchlist is less than the most recently watched episode, try to match it up with the user's total watch amount and only add the necessary episodes

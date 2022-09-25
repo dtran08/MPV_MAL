@@ -1,3 +1,5 @@
+#Credits to ZeroCrystal at https://gitlab.com/-/snippets/2039434. Thank you!
+
 import json
 import requests
 import secrets
