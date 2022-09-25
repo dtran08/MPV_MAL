@@ -113,18 +113,23 @@ def main():
             'q': show,
             'limit': '10',
             'fields': 'anime',
+            'nsfw': '1',
         }
+        # get show id
         rSearch = requests.get(urlSearch, params=paramsSearch, headers=headersSearch)
-        for dataKeys in rSearch.json()['data']:
-            print(dataKeys['node']['title'])
+        if rSearch.json()['data'][0]['node']['title'] in show:
+            animeID = rSearch.json()['data'][0]['node']['id']
+            print("Found show " + rSearch.json()['data'][0]['node']['title'] + " from downloaded show " + show)
+        else:
+            animeID = None
         print("")
-        #get show id here
-        #add episodes
-        # urlAdd = 'https://api.myanimelist.net/v2/anime/' + str(animeID) + '/my_list_status'
-        # headersAdd = {'Authorization': 'Bearer ' + str(retrieveAccessToken()),}
-        # dataAdd = {
-        #     'num_watched_episodes': len(aniMap[show])
-        # }
-        # rAdd = requests.put(urlAdd, headers=headersAdd, data=dataAdd)
+        # add episodes
+        urlAdd = 'https://api.myanimelist.net/v2/anime/' + str(animeID) + '/my_list_status'
+        headersAdd = {'Authorization': 'Bearer ' + str(retrieveAccessToken()),}
+        dataAdd = {
+            'num_watched_episodes': len(aniMap[show])
+        }
+        rAdd = requests.put(urlAdd, headers=headersAdd, data=dataAdd)
+        print(rAdd)
 
 main()
