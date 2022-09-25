@@ -1,3 +1,5 @@
+Yes I know the docs are long I'll fix it later
+
 WIP application to save anime episodes played in mpv and update a user's MyAnimeList profile with the amount of episodes watched.
 
 Currently supported on Unix systems.
