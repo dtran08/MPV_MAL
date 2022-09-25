@@ -13,24 +13,24 @@ When running a file in mpv, it will log it into a file called history.log
 Make sure your anime files are titled properly! The filename must include the same or similar name as what is found on MAL. The MAL API should also accept the English form of the anime as well, so no need to worry about romanji to English formatting. (TO DO: monitor the source folder to see if it contains the title as well)
 
 First Time Setup:
--Run `automation.py`
--If this is the first time setting up your MAL account, you will be prompted to enter your client ID and client secret. Store these values accordingly. (TO DO: have user store in formatted json file and read from that)
--You will be prompted to click a link to authorize your account for access token creation. After clicking "Allow", copy the token in the url (format: `https://github.com/dtran08/MPV_MAL?code=token_here`)
+-Run `automation.py`\
+-If this is the first time setting up your MAL account, you will be prompted to enter your client ID and client secret. Store these values accordingly. (TO DO: have user store in formatted json file and read from that)\
+-You will be prompted to click a link to authorize your account for access token creation. After clicking "Allow", copy the token in the url (format: `https://github.com/dtran08/MPV_MAL?code=token_here`)\
 -The script will automatically create a file called `access_token.txt` containing your access token. It will read from this file when calling any endpoints.
 
 Normal Run:
--Watch anime in mpv. The `save.lua` script will automatically log all anime watched.
--Run `automation.py`
--Type y/n to set up the MAL API authorization again (if your client ID and client secret change, you will need to do this).
--Type y/n to clear your mpv log history file (this is recommended as the MAL API accepts *amounts* of episodes, rather than episode numbers).
+-Watch anime in mpv. The `save.lua` script will automatically log all anime watched.\
+-Run `automation.py`\
+-Type y/n to set up the MAL API authorization again (if your client ID and client secret change, you will need to do this).\
+-Type y/n to clear your mpv log history file (this is recommended as the MAL API accepts *amounts* of episodes, rather than episode numbers).\
 -Assuming that your anime files have accurate naming conventions similar/same to the MAL database, the API will add the *first* result found on its search query to your account, as well as the amount of episodes watched.
 
 Please note that this is still a work in progress and may not function the way it should 100% of the time!
 
 
 Planned Features:
--Make this thing less of a hassle to use
--Figure out how to automatically grab the access token (so the user doesn't have to copy/paste it into the terminal on setup)
--Create json format for client ID and client secret
--Automatically drop the `save.lua` script into the user's mpv config path
+-Make this thing less of a hassle to use\
+-Figure out how to automatically grab the access token (so the user doesn't have to copy/paste it into the terminal on setup)\
+-Create json format for client ID and client secret\
+-Automatically drop the `save.lua` script into the user's mpv config path\
 -If the length of the anime watchlist is less than the most recently watched episode, try to match it up with the user's total watch amount and only add the necessary episodes
