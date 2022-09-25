@@ -8,7 +8,7 @@ You will need a script to record episode names in a log file when opened in the 
 To do this, take the `save.lua` script and drop it into /home/username_here/.config/mpv/scripts/ (TO DO: automatically drop into user's mpv config path)
 When running a file in mpv, it will log it into a file called history.log
 
-Make sure your anime files are titled properly! The filename must include the same or similar name as what is found on MAL. The MAL API should also accept the English form of the anime as well, so no need to worry about romanji to English formatting.
+Make sure your anime files are titled properly! The filename must include the same or similar name as what is found on MAL. The MAL API should also accept the English form of the anime as well, so no need to worry about romanji to English formatting. (TO DO: monitor the source folder to see if it contains the title as well)
 
 First Time Setup:
 -Run `automation.py`
@@ -24,3 +24,10 @@ Normal Run:
 -Assuming that your anime files have accurate naming conventions similar/same to the MAL database, the API will add the *first* result found on its search query to your account, as well as the amount of episodes watched.
 
 Please note that this is still a work in progress and may not function the way it should 100% of the time!
+
+
+Planned Features:
+-Make this thing less of a hassle to use
+-Figure out how to automatically grab the access token (so the user doesn't have to copy/paste it into the terminal on setup)
+-Create json format for client ID and client secret
+-Automatically drop the `save.lua` script into the user's mpv config path
