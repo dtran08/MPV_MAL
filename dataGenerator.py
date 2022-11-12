@@ -10,6 +10,10 @@ foreach separate line, remove the path and only keep the file name
 run anitopy per line
 parse data, group anime into map of series:[episodes]
 """
+class Anime():
+    def __init__(self,title,episodes_watched):
+
+
 def AnimeMap():
     infile = os.environ['HOME'] + '/.config/mpv/history.log'
     assert os.path.exists(infile), "File was not found at " + str(infile)

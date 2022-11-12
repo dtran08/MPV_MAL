@@ -1,5 +1,3 @@
-Yes I know the docs are long I'll fix it later
-
 WIP application to save anime episodes played in mpv and update a user's MyAnimeList profile with the amount of episodes watched.
 
 Currently supported on Unix systems.
@@ -29,7 +27,7 @@ Please note that this is still a work in progress and may not function the way i
 
 
 Planned Features:
--Make this thing less of a hassle to use\
+-Improve ease of access\
 -Figure out how to automatically grab the access token (so the user doesn't have to copy/paste it into the terminal on setup)\
 -Create json format for client ID and client secret\
 -Automatically drop the `save.lua` script into the user's mpv config path\
